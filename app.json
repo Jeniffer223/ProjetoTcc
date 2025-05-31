@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "tcc1",
-    "slug": "snack-80abc7b2-f9e8-4360-98b4-ae325cdb5f05",
+    "slug": "snack-25296d66-eaad-48ab-b39d-56fc63f363b9",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "favicon": "./assets/favicon.png"

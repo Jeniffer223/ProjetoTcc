@@ -18,7 +18,14 @@ export default function HistoricoEscolar({ navigation }) {
         <Text style={styles.label}>Frequência:</Text>
         <Text style={styles.value}>94%</Text>
       </View>
-
+      <TouchableOpacity
+        style={styles.downloadButton}
+        onPress={() => {
+          // Substitua pela lógica para baixar PDF ou abrir documento
+          Alert.alert('Download', 'Iniciando o download do histórico...');
+        }}>
+        <Text style={styles.downloadButtonText}>Baixar Documento</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.backText}>Voltar</Text>
       </TouchableOpacity>
@@ -73,4 +80,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
  },
+ downloadButton: {
+    borderWidth: 1,
+    borderColor: '#2355d8',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
+    borderRadius: 8,
+    marginTop: 10,
+    alignSelf: 'center',
+  },
+  downloadButtonText: {
+    color: '#2355d8',
+    fontSize: 16,
+    fontWeight: '500',
+  },
 }); 

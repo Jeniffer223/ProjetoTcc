@@ -1,51 +1,45 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native';
+import React, { useState } from 'react';
+import api from '../../Services/api';
 
-export default function TelaCadastro({ navigation }) {
+export default function RecuperarSenha({ navigation }) {
+  const [email, setEmail] = useState('');
+
+  const handleEnviar = async () => {
+    try {
+      const response = await api.post('/recuperar-senha', { email });
+      Alert.alert('Sucesso', response.data.message);
+      navigation.goBack();
+    } catch (error) {
+      Alert.alert('Erro', error.response?.data?.error || 'Erro ao enviar o e-mail');
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Criar conta</Text>
-      <Text style={styles.subtitle}>ETEC de Taboão da Serra</Text>
+      <Text style={styles.title}>Esqueceu a senha?</Text>
+      <Text style={styles.subtitle}>Informe seu e-mail para redefinir a senha</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="Nome completo"
-        placeholderTextColor="#A0A0A0"
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
+        placeholder="E-mail cadastrado"
         placeholderTextColor="#A0A0A0"
         keyboardType="email-address"
         autoCapitalize="none"
+        value={email}             
+        onChangeText={setEmail}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        placeholderTextColor="#A0A0A0"
-        secureTextEntry
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Confirmar senha"
-        placeholderTextColor="#A0A0A0"
-        secureTextEntry
-      />
-
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Cadastrar</Text>
+      <TouchableOpacity style={styles.button} onPress={handleEnviar}>
+        <Text style={styles.buttonText}>Enviar</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.link}>Já tem uma conta? Entrar</Text>
+        <Text style={styles.link}>Voltar ao login</Text>
       </TouchableOpacity>
     </ScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -59,11 +53,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 4,
     color: '#202020',
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
     color: '#777',
     marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
     width: '100%',

@@ -1,5 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+const usuario = {
+  nome: 'Aline',
+  email: 'aline@email.com',
+  telefone: '11999999999',
+  id_cpf: '202312345'
+};
+
+
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
@@ -12,7 +20,7 @@ export default function HomeScreen({ navigation }) {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} 
-      onPress={() => navigation.navigate('DadosPessoais')}>
+      onPress={() => navigation.navigate('DadosPessoais', {usuario})}>
         <Text style={styles.buttonText}>Dados Pessoais</Text>
       </TouchableOpacity>
 
